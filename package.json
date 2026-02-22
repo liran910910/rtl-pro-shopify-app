@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "shopify app dev",
-    "build": "cd frontend && npm run build",
+    "build": "cd frontend && npm install --legacy-peer-deps && npm run build",
     "start": "node web/index.js",
     "setup": "npx prisma generate && npx prisma migrate deploy",
     "info": "shopify app info",
