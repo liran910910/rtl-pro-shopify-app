@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "RTL Pro - Transform your Shopify store to Hebrew RTL with one click",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "shopify app dev",
     "build": "cd frontend && npm install --legacy-peer-deps && npm run build",
