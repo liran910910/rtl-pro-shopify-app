@@ -7,11 +7,11 @@ import {
   LanguageTranslateIcon,
   NotificationIcon,
   TextFontIcon,
-  AccessibilityIcon,
+  PersonIcon,
   CodeIcon,
   CreditCardIcon,
   LocationIcon,
-  BillingStatementDollarIcon,
+  BillIcon,
 } from "@shopify/polaris-icons";
 
 export default function AppFrame({ children }) {
@@ -55,7 +55,7 @@ export default function AppFrame({ children }) {
           },
           {
             label: "נגישות",
-            icon: AccessibilityIcon,
+            icon: PersonIcon,
             onClick: () => navigate("/accessibility"),
             selected: location.pathname === "/accessibility",
             badge: "Pro",
@@ -87,7 +87,7 @@ export default function AppFrame({ children }) {
         items={[
           {
             label: "מנוי ותשלום",
-            icon: BillingStatementDollarIcon,
+            icon: BillIcon,
             onClick: () => navigate("/billing"),
             selected: location.pathname === "/billing",
           },
