@@ -1,0 +1,150 @@
+{% comment %}
+  RTL Pro - Core Block
+  Injected into the <head> of every page
+  Handles: RTL layout, translations, custom fonts, payment icons, custom CSS, postcode detection
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "RTL Pro",
+  "target": "head",
+  "javascript": "rtl-core.js",
+  "stylesheet": "rtl-core.css",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "rtl_enabled",
+      "label": "הפעל RTL",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "translation_enabled",
+      "label": "הפעל תרגום לעברית",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "translate_buttons",
+      "label": "תרגם כפתורים",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "translate_navigation",
+      "label": "תרגם ניווט",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "translate_cart",
+      "label": "תרגם סל קניות",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "translate_footer",
+      "label": "תרגם פוטר",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "font_enabled",
+      "label": "הפעל פונט מותאם",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "פונט",
+      "options": [
+        { "value": "Assistant", "label": "Assistant" },
+        { "value": "Heebo", "label": "Heebo" },
+        { "value": "Rubik", "label": "Rubik" },
+        { "value": "Open Sans Hebrew", "label": "Open Sans Hebrew" },
+        { "value": "Alef", "label": "Alef" },
+        { "value": "Varela Round", "label": "Varela Round" },
+        { "value": "David Libre", "label": "David Libre" },
+        { "value": "Frank Ruhl Libre", "label": "Frank Ruhl Libre" },
+        { "value": "Secular One", "label": "Secular One" },
+        { "value": "Suez One", "label": "Suez One" },
+        { "value": "Amatic SC", "label": "Amatic SC" },
+        { "value": "Noto Sans Hebrew", "label": "Noto Sans Hebrew" }
+      ],
+      "default": "Assistant"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "גודל פונט (px)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_icons_enabled",
+      "label": "הצג אייקוני תשלום",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "buy_now_text",
+      "label": "טקסט כפתור קנה עכשיו",
+      "default": "קנה עכשיו"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_text",
+      "label": "טקסט כפתור הוסף לסל",
+      "default": "הוסף לסל"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "CSS מותאם אישית"
+    },
+    {
+      "type": "checkbox",
+      "id": "postcode_detection",
+      "label": "זיהוי מיקוד אוטומטי",
+      "default": false
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %} Load Hebrew Font {% endcomment %}
+{% if block.settings.font_enabled %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family={{ block.settings.font_family | url_encode }}:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{% endif %}
+
+{% comment %} Initialize RTL Pro {% endcomment %}
+<script>
+  window.RTL_PRO_CONFIG = {
+    rtlEnabled: {{ block.settings.rtl_enabled | json }},
+    translationEnabled: {{ block.settings.translation_enabled | json }},
+    translateButtons: {{ block.settings.translate_buttons | json }},
+    translateNavigation: {{ block.settings.translate_navigation | json }},
+    translateCart: {{ block.settings.translate_cart | json }},
+    translateFooter: {{ block.settings.translate_footer | json }},
+    fontEnabled: {{ block.settings.font_enabled | json }},
+    fontFamily: {{ block.settings.font_family | json }},
+    fontSize: {{ block.settings.font_size | json }},
+    paymentIconsEnabled: {{ block.settings.payment_icons_enabled | json }},
+    buyNowText: {{ block.settings.buy_now_text | json }},
+    addToCartText: {{ block.settings.add_to_cart_text | json }},
+    customCss: {{ block.settings.custom_css | json }},
+    postcodeDetection: {{ block.settings.postcode_detection | json }},
+    shopDomain: {{ shop.permanent_domain | json }}
+  };
+</script>
+
+{% comment %} Custom CSS {% endcomment %}
+{% if block.settings.custom_css != blank %}
+  <style>{{ block.settings.custom_css }}</style>
+{% endif %}

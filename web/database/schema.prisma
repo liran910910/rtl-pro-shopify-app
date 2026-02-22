@@ -1,0 +1,113 @@
+// RTL Pro Database Schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Shopify Session Storage
+model Session {
+  id          String    @id
+  shop        String
+  state       String
+  isOnline    Boolean   @default(false)
+  scope       String?
+  expires     DateTime?
+  accessToken String?
+  userId      BigInt?
+
+  @@index([shop])
+}
+
+// Store Settings - Main settings per shop
+model StoreSettings {
+  id                    Int      @id @default(autoincrement())
+  shop                  String   @unique
+  isActive              Boolean  @default(true)
+  plan                  String   @default("basic") // basic, pro, premium
+
+  // RTL Settings
+  rtlEnabled            Boolean  @default(true)
+  rtlDirection          String   @default("rtl") // rtl or ltr
+
+  // Translation Settings
+  translationEnabled    Boolean  @default(true)
+  translateButtons      Boolean  @default(true)
+  translateNavigation   Boolean  @default(true)
+  translateCart         Boolean  @default(true)
+  translateCheckout     Boolean  @default(true)
+  translateSearch       Boolean  @default(true)
+  translateFooter       Boolean  @default(true)
+  translateFilters      Boolean  @default(true)
+  translateDates        Boolean  @default(true)
+
+  // Notification Settings
+  notificationsEnabled  Boolean  @default(true)
+
+  // Font Settings
+  fontEnabled           Boolean  @default(false)
+  fontFamily            String   @default("Assistant")
+  fontUrl               String?
+  fontSize              String   @default("16px")
+
+  // Payment Icons
+  paymentIconsEnabled   Boolean  @default(false)
+  paymentIcons          String   @default("[]") // JSON array of icon names
+  paymentIconsPosition  String   @default("footer") // footer, product, cart
+
+  // Accessibility (Pro+)
+  accessibilityEnabled  Boolean  @default(false)
+  accessibilityWidget   Boolean  @default(false)
+  accessibilityStatement Boolean @default(false)
+  accessibilityStatementContent String?
+
+  // Custom CSS (Premium)
+  customCssEnabled      Boolean  @default(false)
+  customCss             String   @default("")
+
+  // Postcode Detection (Premium)
+  postcodeDetection     Boolean  @default(false)
+
+  // Custom Buy Now Button
+  buyNowText            String   @default("קנה עכשיו")
+  addToCartText         String   @default("הוסף לסל")
+
+  // Metadata
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([shop])
+}
+
+// Notification Templates
+model NotificationTemplate {
+  id          Int      @id @default(autoincrement())
+  shop        String
+  templateKey String   // e.g., "order_confirmation", "shipping_confirmation"
+  subject     String
+  body        String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([shop, templateKey])
+  @@index([shop])
+}
+
+// Custom Translations (user overrides)
+model CustomTranslation {
+  id          Int      @id @default(autoincrement())
+  shop        String
+  originalText String
+  translatedText String
+  context     String?  // e.g., "button", "navigation", "footer"
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([shop, originalText])
+  @@index([shop])
+}

@@ -1,0 +1,368 @@
+/* =============================================
+   RTL Pro - Core RTL Stylesheet
+   Transforms Shopify themes from LTR to RTL
+   ============================================= */
+
+/* ---- Base Direction ---- */
+html[dir="rtl"],
+body[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ---- Flexbox RTL Fixes ---- */
+[dir="rtl"] .flex,
+[dir="rtl"] [style*="display: flex"],
+[dir="rtl"] [style*="display:flex"] {
+  direction: rtl;
+}
+
+/* Reverse flex-direction for horizontal layouts */
+[dir="rtl"] .header__inline-menu,
+[dir="rtl"] .header-menu,
+[dir="rtl"] .nav,
+[dir="rtl"] .navigation,
+[dir="rtl"] nav ul,
+[dir="rtl"] .menu,
+[dir="rtl"] .list-menu,
+[dir="rtl"] .breadcrumb,
+[dir="rtl"] .breadcrumbs {
+  direction: rtl;
+}
+
+/* ---- Grid RTL ---- */
+[dir="rtl"] .grid,
+[dir="rtl"] .collection-list,
+[dir="rtl"] .product-grid {
+  direction: rtl;
+}
+
+/* ---- Text Alignment ---- */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6,
+[dir="rtl"] p,
+[dir="rtl"] li,
+[dir="rtl"] td,
+[dir="rtl"] th,
+[dir="rtl"] label,
+[dir="rtl"] span,
+[dir="rtl"] a,
+[dir="rtl"] div {
+  text-align: right;
+}
+
+[dir="rtl"] .text-center,
+[dir="rtl"] .center {
+  text-align: center !important;
+}
+
+/* ---- Form Elements ---- */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="url"],
+[dir="rtl"] input[type="tel"],
+[dir="rtl"] input[type="number"] {
+  direction: ltr;
+  text-align: right;
+}
+
+/* ---- Header & Navigation ---- */
+[dir="rtl"] .header {
+  direction: rtl;
+}
+
+[dir="rtl"] .header__heading-link {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+[dir="rtl"] .header__icons {
+  direction: rtl;
+}
+
+[dir="rtl"] .header__icon {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Menu drawer */
+[dir="rtl"] .menu-drawer {
+  left: 0;
+  right: auto;
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .menu-drawer.active,
+[dir="rtl"] .menu-drawer.is-open {
+  transform: translateX(0);
+}
+
+[dir="rtl"] .menu-drawer__close-button {
+  left: auto;
+  right: 1rem;
+}
+
+/* ---- Sidebar & Drawer ---- */
+[dir="rtl"] .sidebar,
+[dir="rtl"] .drawer {
+  left: 0;
+  right: auto;
+}
+
+[dir="rtl"] .cart-drawer,
+[dir="rtl"] .cart__drawer {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .cart-drawer.active,
+[dir="rtl"] .cart__drawer.is-open {
+  transform: translateX(0);
+}
+
+/* ---- Product Page ---- */
+[dir="rtl"] .product {
+  direction: rtl;
+}
+
+[dir="rtl"] .product__info-wrapper {
+  text-align: right;
+}
+
+[dir="rtl"] .product-form__buttons {
+  direction: rtl;
+}
+
+[dir="rtl"] .product__description {
+  text-align: right;
+}
+
+/* Price alignment */
+[dir="rtl"] .price,
+[dir="rtl"] .price__container {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .price .money,
+[dir="rtl"] .price__sale {
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+
+/* Quantity selector */
+[dir="rtl"] .quantity {
+  direction: ltr;
+}
+
+/* Product badges */
+[dir="rtl"] .badge,
+[dir="rtl"] .product__badge {
+  right: auto;
+  left: 0;
+}
+
+/* ---- Collection Page ---- */
+[dir="rtl"] .collection {
+  direction: rtl;
+}
+
+[dir="rtl"] .collection-hero__title,
+[dir="rtl"] .collection-hero__description {
+  text-align: right;
+}
+
+[dir="rtl"] .facets,
+[dir="rtl"] .facets__wrapper {
+  direction: rtl;
+}
+
+/* ---- Cart Page ---- */
+[dir="rtl"] .cart {
+  direction: rtl;
+}
+
+[dir="rtl"] .cart-item {
+  direction: rtl;
+}
+
+[dir="rtl"] .cart__footer {
+  text-align: left;
+}
+
+[dir="rtl"] .cart__ctas {
+  direction: rtl;
+}
+
+/* ---- Footer ---- */
+[dir="rtl"] .footer {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .footer__content-top {
+  direction: rtl;
+}
+
+[dir="rtl"] .footer-block {
+  text-align: right;
+}
+
+/* ---- Announcement Bar ---- */
+[dir="rtl"] .announcement-bar {
+  direction: rtl;
+}
+
+/* ---- Slideshow / Carousel ---- */
+[dir="rtl"] .slideshow,
+[dir="rtl"] .slider,
+[dir="rtl"] .carousel,
+[dir="rtl"] .swiper {
+  direction: rtl;
+}
+
+[dir="rtl"] .slider-button--prev {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .slider-button--next {
+  right: auto;
+  left: 0;
+}
+
+/* ---- Icons & SVGs ---- */
+[dir="rtl"] .icon-arrow,
+[dir="rtl"] .icon-chevron-right,
+[dir="rtl"] .icon--arrow {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .breadcrumb__separator {
+  transform: scaleX(-1);
+}
+
+/* ---- Margins & Paddings Swap ---- */
+[dir="rtl"] .ml-auto { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .mr-auto { margin-right: 0; margin-left: auto; }
+
+/* ---- Float Swap ---- */
+[dir="rtl"] .float-left { float: right; }
+[dir="rtl"] .float-right { float: left; }
+
+/* ---- Border Radius Swap ---- */
+[dir="rtl"] .rounded-l { border-radius: 0 0.25rem 0.25rem 0; }
+[dir="rtl"] .rounded-r { border-radius: 0.25rem 0 0 0.25rem; }
+
+/* ---- Shopify Common Theme Fixes ---- */
+
+/* Dawn theme */
+[dir="rtl"] .header__heading {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+[dir="rtl"] .header__menu-item {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Predictive search */
+[dir="rtl"] .predictive-search {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Modal */
+[dir="rtl"] .modal__close-button {
+  left: 1rem;
+  right: auto;
+}
+
+/* Popup / Quick view */
+[dir="rtl"] .quick-add-modal {
+  direction: rtl;
+}
+
+/* Newsletter form */
+[dir="rtl"] .newsletter-form {
+  direction: rtl;
+}
+
+[dir="rtl"] .newsletter-form__field-wrapper {
+  direction: rtl;
+}
+
+/* ---- Accessibility Widget Position ---- */
+.rtl-pro-accessibility-widget {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 99999;
+}
+
+/* ---- Payment Icons ---- */
+.rtl-pro-payment-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  direction: rtl;
+}
+
+.rtl-pro-payment-icons img,
+.rtl-pro-payment-icons svg {
+  height: 28px;
+  width: auto;
+}
+
+/* ---- Animation for smooth transition ---- */
+[dir="rtl"] * {
+  transition: none !important;
+}
+
+body.rtl-pro-loaded [dir="rtl"] * {
+  transition: all 0.3s ease;
+}
+
+/* ---- Print Styles ---- */
+@media print {
+  [dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+  }
+}
+
+/* ---- Mobile Responsive ---- */
+@media (max-width: 749px) {
+  [dir="rtl"] .header__icon--menu {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  [dir="rtl"] .header__icon--cart {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  [dir="rtl"] .mobile-facets {
+    direction: rtl;
+  }
+}

@@ -1,0 +1,14 @@
+api_version = "2024-10"
+
+[[extensions]]
+name = "RTL Pro"
+handle = "rtl-pro-block"
+type = "theme"
+
+  [[extensions.targeting]]
+  module = "./blocks/rtl-core.liquid"
+  target = "head"
+
+  [[extensions.targeting]]
+  module = "./blocks/accessibility-widget.liquid"
+  target = "body"

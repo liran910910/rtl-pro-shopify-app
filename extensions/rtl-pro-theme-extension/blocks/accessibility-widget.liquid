@@ -1,0 +1,98 @@
+{% comment %}
+  RTL Pro - Accessibility Widget Block
+  Adds accessibility toolbar and statement for Israeli accessibility law compliance
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "RTL Pro - נגישות",
+  "target": "body",
+  "stylesheet": "accessibility-widget.css",
+  "javascript": "accessibility-widget.js",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "accessibility_enabled",
+      "label": "הפעל נגישות",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_widget",
+      "label": "הצג כפתור נגישות",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_statement",
+      "label": "הצג הצהרת נגישות",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "widget_position",
+      "label": "מיקום כפתור",
+      "options": [
+        { "value": "bottom-left", "label": "שמאל למטה" },
+        { "value": "bottom-right", "label": "ימין למטה" },
+        { "value": "top-left", "label": "שמאל למעלה" },
+        { "value": "top-right", "label": "ימין למעלה" }
+      ],
+      "default": "bottom-left"
+    },
+    {
+      "type": "color",
+      "id": "widget_color",
+      "label": "צבע כפתור",
+      "default": "#0066CC"
+    },
+    {
+      "type": "text",
+      "id": "company_name",
+      "label": "שם החברה",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "אימייל ליצירת קשר",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "טלפון ליצירת קשר",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "accessibility_officer",
+      "label": "שם רכז/ת נגישות",
+      "default": ""
+    },
+    {
+      "type": "date",
+      "id": "last_updated",
+      "label": "תאריך עדכון אחרון"
+    }
+  ]
+}
+{% endschema %}
+
+{% if block.settings.accessibility_enabled %}
+<script>
+  window.RTL_PRO_ACCESSIBILITY = {
+    enabled: true,
+    showWidget: {{ block.settings.show_widget | json }},
+    showStatement: {{ block.settings.show_statement | json }},
+    position: {{ block.settings.widget_position | json }},
+    color: {{ block.settings.widget_color | json }},
+    companyName: {{ block.settings.company_name | json }},
+    contactEmail: {{ block.settings.contact_email | json }},
+    contactPhone: {{ block.settings.contact_phone | json }},
+    accessibilityOfficer: {{ block.settings.accessibility_officer | json }},
+    lastUpdated: {{ block.settings.last_updated | json }},
+    shopName: {{ shop.name | json }}
+  };
+</script>
+{% endif %}
