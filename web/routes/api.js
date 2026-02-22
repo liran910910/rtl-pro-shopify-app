@@ -1,5 +1,6 @@
 // RTL Pro - API Routes
-import { Router } from "express";
+import express from "express";
+const { Router } = express;
 import { prisma } from "../shopify.js";
 import shopify from "../shopify.js";
 import { PLANS, hasFeature, changePlan, getCurrentPlan } from "../helpers/billing.js";

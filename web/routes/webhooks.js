@@ -1,5 +1,6 @@
 // RTL Pro - Webhook Handlers
-import { DeliveryMethod } from "@shopify/shopify-api";
+import shopifyApi from "@shopify/shopify-api";
+const { DeliveryMethod } = shopifyApi;
 import { prisma } from "../shopify.js";
 
 export const webhookRoutes = {
