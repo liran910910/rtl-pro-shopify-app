@@ -1,9 +1,10 @@
 // RTL Pro - Shopify Billing Management
-import shopify from "../shopify.js";
-import { prisma } from "../shopify.js";
+const shopifyModule = require("../shopify.js");
+const shopify = shopifyModule;
+const { prisma } = shopifyModule;
 
 // Plan configurations
-export const PLANS = {
+const PLANS = {
   basic: {
     name: "RTL Pro Basic",
     price: 7.75,
@@ -55,14 +56,14 @@ export const PLANS = {
 };
 
 // Check if a feature is available for a given plan
-export function hasFeature(plan, feature) {
+function hasFeature(plan, feature) {
   const planConfig = PLANS[plan];
   if (!planConfig) return false;
   return planConfig.features.includes(feature);
 }
 
 // Setup billing for a new store
-export async function setupBilling(session) {
+async function setupBilling(session) {
   const shop = session.shop;
 
   // Check if store has settings already
@@ -85,7 +86,7 @@ export async function setupBilling(session) {
 }
 
 // Create a billing subscription
-export async function createSubscription(session, planKey) {
+async function createSubscription(session, planKey) {
   const plan = PLANS[planKey];
   if (!plan) throw new Error(`Unknown plan: ${planKey}`);
 
@@ -114,7 +115,7 @@ export async function createSubscription(session, planKey) {
 }
 
 // Cancel subscription
-export async function cancelSubscription(session) {
+async function cancelSubscription(session) {
   const shop = session.shop;
 
   await prisma.storeSettings.update({
@@ -126,7 +127,7 @@ export async function cancelSubscription(session) {
 }
 
 // Upgrade/downgrade plan
-export async function changePlan(session, newPlanKey) {
+async function changePlan(session, newPlanKey) {
   const shop = session.shop;
 
   // Create new billing subscription
@@ -146,7 +147,7 @@ export async function changePlan(session, newPlanKey) {
 }
 
 // Get current plan info
-export async function getCurrentPlan(shop) {
+async function getCurrentPlan(shop) {
   const settings = await prisma.storeSettings.findUnique({
     where: { shop },
   });
@@ -158,3 +159,13 @@ export async function getCurrentPlan(shop) {
     features: PLANS[settings.plan]?.features || PLANS.basic.features,
   };
 }
+
+module.exports = {
+  PLANS,
+  hasFeature,
+  setupBilling,
+  createSubscription,
+  cancelSubscription,
+  changePlan,
+  getCurrentPlan,
+};

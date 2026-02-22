@@ -1,11 +1,11 @@
 // RTL Pro - Shopify Configuration
-import shopifyAppExpress from "@shopify/shopify-app-express";
+const shopifyAppExpress = require("@shopify/shopify-app-express");
 const { LATEST_API_VERSION, shopifyApp } = shopifyAppExpress;
-import prismaSessionStorage from "@shopify/shopify-app-session-storage-prisma";
+const prismaSessionStorage = require("@shopify/shopify-app-session-storage-prisma");
 const { PrismaSessionStorage } = prismaSessionStorage;
-import prismaClient from "@prisma/client";
+const prismaClient = require("@prisma/client");
 const { PrismaClient } = prismaClient;
-import shopifyApiRest from "@shopify/shopify-api/rest/admin/2024-10";
+const shopifyApiRest = require("@shopify/shopify-api/rest/admin/2024-10");
 const { restResources } = shopifyApiRest;
 
 const prisma = new PrismaClient();
@@ -48,5 +48,5 @@ const shopify = shopifyApp({
   sessionStorage: new PrismaSessionStorage(prisma),
 });
 
-export default shopify;
-export { prisma };
+module.exports = shopify;
+module.exports.prisma = prisma;

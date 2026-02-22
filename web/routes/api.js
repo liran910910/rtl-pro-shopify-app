@@ -1,11 +1,12 @@
 // RTL Pro - API Routes
-import express from "express";
+const express = require("express");
 const { Router } = express;
-import { prisma } from "../shopify.js";
-import shopify from "../shopify.js";
-import { PLANS, hasFeature, changePlan, getCurrentPlan } from "../helpers/billing.js";
-import hebrewTranslations from "../translations/hebrew.json" assert { type: "json" };
-import notificationTemplates from "../translations/notifications.json" assert { type: "json" };
+const shopifyModule = require("../shopify.js");
+const { prisma } = shopifyModule;
+const shopify = shopifyModule;
+const { PLANS, hasFeature, changePlan, getCurrentPlan } = require("../helpers/billing.js");
+const hebrewTranslations = require("../translations/hebrew.json");
+const notificationTemplates = require("../translations/notifications.json");
 
 const router = Router();
 
@@ -384,4 +385,4 @@ router.get("/postcode/:code", async (req, res) => {
   }
 });
 
-export { router as apiRoutes };
+module.exports = { apiRoutes: router };

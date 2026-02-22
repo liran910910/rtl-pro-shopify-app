@@ -1,14 +1,14 @@
 // RTL Pro - Main Server
-import { join, resolve } from "path";
-import { readFileSync } from "fs";
-import express from "express";
-import compression from "compression";
-import serveStatic from "serve-static";
-import shopify from "./shopify.js";
-import { setupBilling } from "./helpers/billing.js";
-import { apiRoutes } from "./routes/api.js";
-import { webhookRoutes } from "./routes/webhooks.js";
-import { proxyRoutes } from "./routes/proxy.js";
+const { join, resolve } = require("path");
+const { readFileSync } = require("fs");
+const express = require("express");
+const compression = require("compression");
+const serveStatic = require("serve-static");
+const shopify = require("./shopify.js");
+const { setupBilling } = require("./helpers/billing.js");
+const { apiRoutes } = require("./routes/api.js");
+const { webhookRoutes } = require("./routes/webhooks.js");
+const { proxyRoutes } = require("./routes/proxy.js");
 
 const PORT = parseInt(process.env.PORT || "3000", 10);
 const STATIC_PATH = resolve("frontend/dist");

@@ -1,8 +1,9 @@
 // RTL Pro - App Proxy Routes (public, served to storefront)
-import express from "express";
+const express = require("express");
 const { Router } = express;
-import { prisma } from "../shopify.js";
-import hebrewTranslations from "../translations/hebrew.json" assert { type: "json" };
+const shopifyModule = require("../shopify.js");
+const { prisma } = shopifyModule;
+const hebrewTranslations = require("../translations/hebrew.json");
 
 const router = Router();
 
@@ -109,4 +110,4 @@ router.get("/postcode/:code", async (req, res) => {
   res.json(city ? { success: true, city } : { success: false });
 });
 
-export { router as proxyRoutes };
+module.exports = { proxyRoutes: router };

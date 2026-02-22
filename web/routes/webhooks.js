@@ -1,9 +1,10 @@
 // RTL Pro - Webhook Handlers
-import shopifyApi from "@shopify/shopify-api";
+const shopifyApi = require("@shopify/shopify-api");
 const { DeliveryMethod } = shopifyApi;
-import { prisma } from "../shopify.js";
+const shopifyModule = require("../shopify.js");
+const { prisma } = shopifyModule;
 
-export const webhookRoutes = {
+const webhookRoutes = {
   // App uninstalled
   APP_UNINSTALLED: {
     deliveryMethod: DeliveryMethod.Http,
@@ -88,3 +89,5 @@ export const webhookRoutes = {
     },
   },
 };
+
+module.exports = { webhookRoutes };
