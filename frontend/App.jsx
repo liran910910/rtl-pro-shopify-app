@@ -33,6 +33,7 @@ function App() {
             <Route path="/payment-icons" element={<PaymentIcons />} />
             <Route path="/postcode" element={<PostcodeSettings />} />
             <Route path="/billing" element={<BillingPage />} />
+            <Route path="*" element={<Dashboard />} />
           </Routes>
         </AppFrame>
       </BrowserRouter>
