@@ -52,11 +52,10 @@ app.use("/api/*", shopify.validateAuthenticatedSession());
 
 // API Routes
 app.use("/api", apiRoutes);
-
 // App Proxy Routes (public, no auth)
 app.use("/api/proxy", proxyRoutes);
 
-// Compression
+// Compressio
 app.use(compression());
 
 // Serve static frontend
@@ -66,7 +65,8 @@ app.use(serveStatic(STATIC_PATH, { index: false }));
 app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
   try {
     const htmlPath = join(STATIC_PATH, "index.html");
-    const html = readFileSync(htmlPath, "utf-8");
+    let html = readFileSync(htmlPath, "utf-8");
+        html = html.replace("%SHOPIFY_API_KEY%", process.env.SHOPIFY_API_KEY || "");
     res.status(200).set("Content-Type", "text/html").send(html);
   } catch (e) {
     res.status(500).send("App loading error. Please refresh.");
