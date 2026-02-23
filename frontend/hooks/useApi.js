@@ -2,6 +2,18 @@ import { useState, useCallback } from "react";
 
 const BASE_URL = "/api";
 
+async function getSessionToken() {
+    if (window.shopify && typeof window.shopify.idToken === "function") {
+          try {
+                  return await window.shopify.idToken();
+          } catch (e) {
+                  console.warn("Failed to get session token:", e);
+                  return null;
+          }
+    }
+    return null;
+}
+
 export function useApi() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -9,11 +21,13 @@ export function useApi() {
   const request = useCallback(async (path, options = {}) => {
     setLoading(true);
     setError(null);
+          const token = await getSessionToken();
     try {
       const response = await fetch(`${BASE_URL}${path}`, {
         headers: {
           "Content-Type": "application/json",
           ...options.headers,
+                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         ...options,
       });
