@@ -24,6 +24,7 @@ import { useApi } from "../hooks/useApi.js";
 export default function Dashboard() {
   const [settings, setSettings] = useState(null);
   const [plan, setPlan] = useState(null);
+  const [loadError, setLoadError] = useState(false);
   const { get, loading } = useApi();
   const navigate = useNavigate();
 
@@ -34,6 +35,9 @@ export default function Dashboard() {
       setPlan(data.plan);
     } catch (e) {
       console.error(e);
+      setLoadError(true);
+      setSettings({});
+      setPlan({ key: "basic", name: "Basic", price: "7.75" });
     }
   }, [get]);
 
@@ -41,7 +45,7 @@ export default function Dashboard() {
     loadData();
   }, [loadData]);
 
-  if (loading && !settings) {
+  if (loading && !settings && !loadError) {
     return (
       <Page title="RTL Pro">
         <Box padding="800" minHeight="300px">
@@ -61,29 +65,35 @@ export default function Dashboard() {
 
   const features = [
     { key: "rtlEnabled", label: "RTL Layout", path: "/rtl" },
-    { key: "translationEnabled", label: "תרגום לעברית", path: "/translations" },
-    { key: "notificationsEnabled", label: "תרגום התראות", path: "/notifications" },
-    { key: "fontEnabled", label: "פונט מותאם", path: "/fonts" },
-    { key: "paymentIconsEnabled", label: "אייקוני תשלום", path: "/payment-icons" },
-    { key: "accessibilityEnabled", label: "נגישות", path: "/accessibility", plan: "pro" },
-    { key: "customCssEnabled", label: "CSS מותאם", path: "/custom-css", plan: "premium" },
-    { key: "postcodeDetection", label: "זיהוי מיקוד", path: "/postcode", plan: "premium" },
+    { key: "translationEnabled", label: "\u05ea\u05e8\u05d2\u05d5\u05dd \u05dc\u05e2\u05d1\u05e8\u05d9\u05ea", path: "/translations" },
+    { key: "notificationsEnabled", label: "\u05ea\u05e8\u05d2\u05d5\u05dd \u05d4\u05ea\u05e8\u05d0\u05d5\u05ea", path: "/notifications" },
+    { key: "fontEnabled", label: "\u05e4\u05d5\u05e0\u05d8 \u05de\u05d5\u05ea\u05d0\u05dd", path: "/fonts" },
+    { key: "paymentIconsEnabled", label: "\u05d0\u05d9\u05d9\u05e7\u05d5\u05e0\u05d9 \u05ea\u05e9\u05dc\u05d5\u05dd", path: "/payment-icons" },
+    { key: "accessibilityEnabled", label: "\u05e0\u05d2\u05d9\u05e9\u05d5\u05ea", path: "/accessibility", plan: "pro" },
+    { key: "customCssEnabled", label: "CSS \u05de\u05d5\u05ea\u05d0\u05dd", path: "/custom-css", plan: "premium" },
+    { key: "postcodeDetection", label: "\u05d6\u05d9\u05d4\u05d5\u05d9 \u05de\u05d9\u05e7\u05d5\u05d3", path: "/postcode", plan: "premium" },
   ];
 
   return (
-    <Page title="RTL Pro - דשבורד">
+    <Page title="RTL Pro - \u05d3\u05e9\u05d1\u05d5\u05e8\u05d3">
       <Layout>
         <Layout.Section>
-          <Banner tone="success">
-            <p>ברוך הבא ל-RTL Pro! האפליקציה שלך פעילה ומוכנה לשימוש.</p>
-          </Banner>
+          {loadError ? (
+            <Banner tone="warning">
+              <p>\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05d8\u05e2\u05d5\u05df \u05d0\u05ea \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea. \u05de\u05e6\u05d9\u05d2 \u05e2\u05e8\u05db\u05d9\u05dd \u05d1\u05e8\u05d9\u05e8\u05ea \u05de\u05d7\u05d3\u05dc.</p>
+            </Banner>
+          ) : (
+            <Banner tone="success">
+              <p>\u05d1\u05e8\u05d5\u05da \u05d4\u05d1\u05d0 \u05dc-RTL Pro! \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4 \u05e9\u05dc\u05da \u05e4\u05e2\u05d9\u05dc\u05d4 \u05d5\u05de\u05d5\u05db\u05e0\u05d4 \u05dc\u05e9\u05d9\u05de\u05d5\u05e9.</p>
+            </Banner>
+          )}
         </Layout.Section>
 
         <Layout.Section variant="oneHalf">
           <Card>
             <BlockStack gap="400">
               <InlineStack align="space-between">
-                <Text variant="headingMd" as="h2">סטטוס</Text>
+                <Text variant="headingMd" as="h2">\u05e1\u05d8\u05d8\u05d5\u05e1</Text>
                 {plan && planBadge[plan.key]}
               </InlineStack>
 
@@ -112,7 +122,7 @@ export default function Dashboard() {
                         size="slim"
                         onClick={() => navigate(feature.path)}
                       >
-                        הגדרות
+                        \u05d4\u05d2\u05d3\u05e8\u05d5\u05ea
                       </Button>
                     </InlineStack>
                   );
@@ -125,16 +135,16 @@ export default function Dashboard() {
         <Layout.Section variant="oneHalf">
           <Card>
             <BlockStack gap="400">
-              <Text variant="headingMd" as="h2">המנוי שלך</Text>
+              <Text variant="headingMd" as="h2">\u05d4\u05de\u05e0\u05d5\u05d9 \u05e9\u05dc\u05da</Text>
               <BlockStack gap="200">
                 <Text>
-                  <strong>תוכנית:</strong> {plan?.name || "Basic"}
+                  <strong>\u05ea\u05d5\u05db\u05e0\u05d9\u05ea:</strong> {plan?.name || "Basic"}
                 </Text>
                 <Text>
-                  <strong>מחיר:</strong> ${plan?.price || "7.75"}/חודש
+                  <strong>\u05de\u05d7\u05d9\u05e8:</strong> ${plan?.price || "7.75"}/\u05d7\u05d5\u05d3\u05e9
                 </Text>
                 <Button onClick={() => navigate("/billing")}>
-                  ניהול מנוי
+                  \u05e0\u05d9\u05d4\u05d5\u05dc \u05de\u05e0\u05d5\u05d9
                 </Button>
               </BlockStack>
             </BlockStack>
@@ -143,16 +153,16 @@ export default function Dashboard() {
           <Box paddingBlockStart="400">
             <Card>
               <BlockStack gap="400">
-                <Text variant="headingMd" as="h2">פעולות מהירות</Text>
+                <Text variant="headingMd" as="h2">\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea \u05de\u05d4\u05d9\u05e8\u05d5\u05ea</Text>
                 <BlockStack gap="200">
                   <Button onClick={() => navigate("/rtl")} variant="primary" fullWidth>
-                    הפעל RTL
+                    \u05d4\u05e4\u05e2\u05dc RTL
                   </Button>
                   <Button onClick={() => navigate("/translations")} fullWidth>
-                    נהל תרגומים
+                    \u05e0\u05d4\u05dc \u05ea\u05e8\u05d2\u05d5\u05de\u05d9\u05dd
                   </Button>
                   <Button onClick={() => navigate("/fonts")} fullWidth>
-                    בחר פונט עברי
+                    \u05d1\u05d7\u05e8 \u05e4\u05d5\u05e0\u05d8 \u05e2\u05d1\u05e8\u05d9
                   </Button>
                 </BlockStack>
               </BlockStack>
@@ -163,13 +173,13 @@ export default function Dashboard() {
         <Layout.Section>
           <Card>
             <BlockStack gap="400">
-              <Text variant="headingMd" as="h2">צריכים עזרה?</Text>
+              <Text variant="headingMd" as="h2">\u05e6\u05e8\u05d9\u05db\u05d9\u05dd \u05e2\u05d6\u05e8\u05d4?</Text>
               <Text>
-                אם יש לך שאלות או שאתה צריך עזרה עם ההגדרות, צור קשר עם הצוות שלנו.
-                אנחנו כאן לעזור!
+                \u05d0\u05dd \u05d9\u05e9 \u05dc\u05da \u05e9\u05d0\u05dc\u05d5\u05ea \u05d0\u05d5 \u05e9\u05d0\u05ea\u05d4 \u05e6\u05e8\u05d9\u05da \u05e2\u05d6\u05e8\u05d4 \u05e2\u05dd \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea, \u05e6\u05d5\u05e8 \u05e7\u05e9\u05e8 \u05e2\u05dd \u05d4\u05e6\u05d5\u05d5\u05ea \u05e9\u05dc\u05e0\u05d5.
+                \u05d0\u05e0\u05d7\u05e0\u05d5 \u05db\u05d0\u05df \u05dc\u05e2\u05d6\u05d5\u05e8!
               </Text>
               <InlineStack gap="200">
-                <Button url="mailto:support@rtlpro.app">שלח אימייל</Button>
+                <Button url="mailto:support@rtlpro.app">\u05e9\u05dc\u05d7 \u05d0\u05d9\u05de\u05d9\u05d9\u05dc</Button>
               </InlineStack>
             </BlockStack>
           </Card>
