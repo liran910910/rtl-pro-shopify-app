@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "shopify app dev",
-    "build": "npx prisma generate --schema=web/database/schema.prisma && cd frontend && npm install --legacy-peer-deps && npm run build",
+    "build": "npx prisma generate --schema=web/database/schema.prisma && npx prisma db push --schema=web/database/schema.prisma --accept-data-loss && cd frontend && npm install --legacy-peer-deps && npm run build",
     "start": "node web/index.js",
     "setup": "npx prisma generate && npx prisma migrate deploy",
     "info": "shopify app info",
