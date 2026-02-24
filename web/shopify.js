@@ -5,8 +5,7 @@ import sessionStoragePkg from "@shopify/shopify-app-session-storage-prisma";
 const { PrismaSessionStorage } = sessionStoragePkg;
 import prismaPkg from "@prisma/client";
 const { PrismaClient } = prismaPkg;
-import restPkg from "@shopify/shopify-api/rest/admin/2024-10";
-const { restResources } = restPkg;
+import { restResources } from "@shopify/shopify-api/rest/admin/2024-10";
 
 const prisma = new PrismaClient();
 
