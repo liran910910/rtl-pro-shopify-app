@@ -7,6 +7,7 @@ import heTranslations from "@shopify/polaris/locales/en.json";
 
 import AppFrame from "./components/AppFrame.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import ExitIframe from "./pages/ExitIframe.jsx";
 import RTLSettings from "./pages/RTLSettings.jsx";
 import TranslationSettings from "./pages/TranslationSettings.jsx";
 import NotificationSettings from "./pages/NotificationSettings.jsx";
@@ -18,28 +19,33 @@ import PostcodeSettings from "./pages/PostcodeSettings.jsx";
 import BillingPage from "./pages/BillingPage.jsx";
 
 function App() {
-  return (
-    <AppProvider i18n={heTranslations}>
-      <BrowserRouter>
-        <AppFrame>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/rtl" element={<RTLSettings />} />
-            <Route path="/translations" element={<TranslationSettings />} />
-            <Route path="/notifications" element={<NotificationSettings />} />
-            <Route path="/fonts" element={<FontSettings />} />
-            <Route path="/accessibility" element={<AccessibilitySettings />} />
-            <Route path="/custom-css" element={<CustomCSSEditor />} />
-            <Route path="/payment-icons" element={<PaymentIcons />} />
-            <Route path="/postcode" element={<PostcodeSettings />} />
-            <Route path="/billing" element={<BillingPage />} />
-            <Route path="*" element={<Dashboard />} />
-          </Routes>
-        </AppFrame>
-      </BrowserRouter>
-    </AppProvider>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+    return (
+          <AppProvider i18n={heTranslations}>
+                  <BrowserRouter>
+                          <Routes>
+                                    <Route path="/exitiframe" element={<ExitIframe />} />
+                                    <Route path="/*" element={
+                                                  <AppFrame>
+                                                                <Routes>
+                                                                                <Route path="/" element={<Dashboard />} />
+                                                                                <Route path="/rtl" element={<RTLSettings />} />
+                                                                                <Route path="/translations" element={<TranslationSettings />} />
+                                                                                <Route path="/notifications" element={<NotificationSettings />} />
+                                                                                <Route path="/fonts" element={<FontSettings />} />
+                                                                                <Route path="/accessibility" element={<AccessibilitySettings />} />
+                                                                                <Route path="/custom-css" element={<CustomCSSEditor />} />
+                                                                                <Route path="/payment-icons" element={<PaymentIcons />} />
+                                                                                <Route path="/postcode" element={<PostcodeSettings />} />
+                                                                                <Route path="/billing" element={<BillingPage />} />
+                                                                                <Route path="*" element={<Dashboard />} />
+                                                                </Routes>Routes>
+                                                  </AppFrame>AppFrame>
+                                      } />
+                                    </Route>Routes>
+                          </Routes>BrowserRouter>
+                  </BrowserRouter>AppProvider>
+            );
+            }
+          
+          const root = ReactDOM.createRoot(document.getElementById("root"));
+          root.render(<App />);</BrowserRouter>
