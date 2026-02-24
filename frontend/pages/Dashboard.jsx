@@ -75,16 +75,16 @@ export default function Dashboard() {
   ];
 
   return (
-    <Page title="RTL Pro - \u05d3\u05e9\u05d1\u05d5\u05e8\u05d3">
+    <Page title={"RTL Pro - \u05d3\u05e9\u05d1\u05d5\u05e8\u05d3"}>
       <Layout>
         <Layout.Section>
           {loadError ? (
             <Banner tone="warning">
-              <p>\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05d8\u05e2\u05d5\u05df \u05d0\u05ea \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea. \u05de\u05e6\u05d9\u05d2 \u05e2\u05e8\u05db\u05d9\u05dd \u05d1\u05e8\u05d9\u05e8\u05ea \u05de\u05d7\u05d3\u05dc.</p>
+              <p>{"\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05d8\u05e2\u05d5\u05df \u05d0\u05ea \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea. \u05de\u05e6\u05d9\u05d2 \u05e2\u05e8\u05db\u05d9\u05dd \u05d1\u05e8\u05d9\u05e8\u05ea \u05de\u05d7\u05d3\u05dc."}</p>
             </Banner>
           ) : (
             <Banner tone="success">
-              <p>\u05d1\u05e8\u05d5\u05da \u05d4\u05d1\u05d0 \u05dc-RTL Pro! \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4 \u05e9\u05dc\u05da \u05e4\u05e2\u05d9\u05dc\u05d4 \u05d5\u05de\u05d5\u05db\u05e0\u05d4 \u05dc\u05e9\u05d9\u05de\u05d5\u05e9.</p>
+              <p>{"\u05d1\u05e8\u05d5\u05da \u05d4\u05d1\u05d0 \u05dc-RTL Pro! \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4 \u05e9\u05dc\u05da \u05e4\u05e2\u05d9\u05dc\u05d4 \u05d5\u05de\u05d5\u05db\u05e0\u05d4 \u05dc\u05e9\u05d9\u05de\u05d5\u05e9."}</p>
             </Banner>
           )}
         </Layout.Section>
@@ -93,7 +93,7 @@ export default function Dashboard() {
           <Card>
             <BlockStack gap="400">
               <InlineStack align="space-between">
-                <Text variant="headingMd" as="h2">\u05e1\u05d8\u05d8\u05d5\u05e1</Text>
+                <Text variant="headingMd" as="h2">{"\u05e1\u05d8\u05d8\u05d5\u05e1"}</Text>
                 {plan && planBadge[plan.key]}
               </InlineStack>
 
@@ -122,7 +122,7 @@ export default function Dashboard() {
                         size="slim"
                         onClick={() => navigate(feature.path)}
                       >
-                        \u05d4\u05d2\u05d3\u05e8\u05d5\u05ea
+                        {"\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea"}
                       </Button>
                     </InlineStack>
                   );
@@ -135,16 +135,16 @@ export default function Dashboard() {
         <Layout.Section variant="oneHalf">
           <Card>
             <BlockStack gap="400">
-              <Text variant="headingMd" as="h2">\u05d4\u05de\u05e0\u05d5\u05d9 \u05e9\u05dc\u05da</Text>
+              <Text variant="headingMd" as="h2">{"\u05d4\u05de\u05e0\u05d5\u05d9 \u05e9\u05dc\u05da"}</Text>
               <BlockStack gap="200">
                 <Text>
-                  <strong>\u05ea\u05d5\u05db\u05e0\u05d9\u05ea:</strong> {plan?.name || "Basic"}
+                  <strong>{"\u05ea\u05d5\u05db\u05e0\u05d9\u05ea:"}</strong> {plan?.name || "Basic"}
                 </Text>
                 <Text>
-                  <strong>\u05de\u05d7\u05d9\u05e8:</strong> ${plan?.price || "7.75"}/\u05d7\u05d5\u05d3\u05e9
+                  <strong>{"\u05de\u05d7\u05d9\u05e8:"}</strong> ${plan?.price || "7.75"}/{"\u05d7\u05d5\u05d3\u05e9"}
                 </Text>
                 <Button onClick={() => navigate("/billing")}>
-                  \u05e0\u05d9\u05d4\u05d5\u05dc \u05de\u05e0\u05d5\u05d9
+                  {"\u05e0\u05d9\u05d4\u05d5\u05dc \u05de\u05e0\u05d5\u05d9"}
                 </Button>
               </BlockStack>
             </BlockStack>
@@ -153,16 +153,16 @@ export default function Dashboard() {
           <Box paddingBlockStart="400">
             <Card>
               <BlockStack gap="400">
-                <Text variant="headingMd" as="h2">\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea \u05de\u05d4\u05d9\u05e8\u05d5\u05ea</Text>
+                <Text variant="headingMd" as="h2">{"\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea \u05de\u05d4\u05d9\u05e8\u05d5\u05ea"}</Text>
                 <BlockStack gap="200">
                   <Button onClick={() => navigate("/rtl")} variant="primary" fullWidth>
-                    \u05d4\u05e4\u05e2\u05dc RTL
+                    {"\u05d4\u05e4\u05e2\u05dc RTL"}
                   </Button>
                   <Button onClick={() => navigate("/translations")} fullWidth>
-                    \u05e0\u05d4\u05dc \u05ea\u05e8\u05d2\u05d5\u05de\u05d9\u05dd
+                    {"\u05e0\u05d4\u05dc \u05ea\u05e8\u05d2\u05d5\u05de\u05d9\u05dd"}
                   </Button>
                   <Button onClick={() => navigate("/fonts")} fullWidth>
-                    \u05d1\u05d7\u05e8 \u05e4\u05d5\u05e0\u05d8 \u05e2\u05d1\u05e8\u05d9
+                    {"\u05d1\u05d7\u05e8 \u05e4\u05d5\u05e0\u05d8 \u05e2\u05d1\u05e8\u05d9"}
                   </Button>
                 </BlockStack>
               </BlockStack>
@@ -173,13 +173,13 @@ export default function Dashboard() {
         <Layout.Section>
           <Card>
             <BlockStack gap="400">
-              <Text variant="headingMd" as="h2">\u05e6\u05e8\u05d9\u05db\u05d9\u05dd \u05e2\u05d6\u05e8\u05d4?</Text>
+              <Text variant="headingMd" as="h2">{"\u05e6\u05e8\u05d9\u05db\u05d9\u05dd \u05e2\u05d6\u05e8\u05d4?"}</Text>
               <Text>
-                \u05d0\u05dd \u05d9\u05e9 \u05dc\u05da \u05e9\u05d0\u05dc\u05d5\u05ea \u05d0\u05d5 \u05e9\u05d0\u05ea\u05d4 \u05e6\u05e8\u05d9\u05da \u05e2\u05d6\u05e8\u05d4 \u05e2\u05dd \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea, \u05e6\u05d5\u05e8 \u05e7\u05e9\u05e8 \u05e2\u05dd \u05d4\u05e6\u05d5\u05d5\u05ea \u05e9\u05dc\u05e0\u05d5.
-                \u05d0\u05e0\u05d7\u05e0\u05d5 \u05db\u05d0\u05df \u05dc\u05e2\u05d6\u05d5\u05e8!
+                {"\u05d0\u05dd \u05d9\u05e9 \u05dc\u05da \u05e9\u05d0\u05dc\u05d5\u05ea \u05d0\u05d5 \u05e9\u05d0\u05ea\u05d4 \u05e6\u05e8\u05d9\u05da \u05e2\u05d6\u05e8\u05d4 \u05e2\u05dd \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea, \u05e6\u05d5\u05e8 \u05e7\u05e9\u05e8 \u05e2\u05dd \u05d4\u05e6\u05d5\u05d5\u05ea \u05e9\u05dc\u05e0\u05d5."}
+                {" \u05d0\u05e0\u05d7\u05e0\u05d5 \u05db\u05d0\u05df \u05dc\u05e2\u05d6\u05d5\u05e8!"}
               </Text>
               <InlineStack gap="200">
-                <Button url="mailto:support@rtlpro.app">\u05e9\u05dc\u05d7 \u05d0\u05d9\u05de\u05d9\u05d9\u05dc</Button>
+                <Button url="mailto:support@rtlpro.app">{"\u05e9\u05dc\u05d7 \u05d0\u05d9\u05de\u05d9\u05d9\u05dc"}</Button>
               </InlineStack>
             </BlockStack>
           </Card>
