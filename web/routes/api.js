@@ -3,8 +3,8 @@ import { Router } from "express";
 import { prisma } from "../shopify.js";
 import shopify from "../shopify.js";
 import { PLANS, hasFeature, changePlan, getCurrentPlan } from "../helpers/billing.js";
-import hebrewTranslations from "../translations/hebrew.json" assert { type: "json" };
-import notificationTemplates from "../translations/notifications.json" assert { type: "json" };
+import hebrewTranslations from "../translations/hebrew.json" with { type: "json" };
+import notificationTemplates from "../translations/notifications.json" with { type: "json" };
 
 const router = Router();
 
