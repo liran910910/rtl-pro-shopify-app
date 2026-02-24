@@ -1,7 +1,7 @@
 // RTL Pro - App Proxy Routes (public, served to storefront)
 import { Router } from "express";
 import { prisma } from "../shopify.js";
-import hebrewTranslations from "../translations/hebrew.json" assert { type: "json" };
+import hebrewTranslations from "../translations/hebrew.json" with { type: "json" };
 
 const router = Router();
 
