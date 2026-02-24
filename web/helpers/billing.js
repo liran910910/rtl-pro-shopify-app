@@ -1,10 +1,9 @@
 // RTL Pro - Shopify Billing Management
-const shopifyModule = require("../shopify.js");
-const shopify = shopifyModule;
-const { prisma } = shopifyModule;
+import shopify from "../shopify.js";
+import { prisma } from "../shopify.js";
 
 // Plan configurations
-const PLANS = {
+export const PLANS = {
   basic: {
     name: "RTL Pro Basic",
     price: 7.75,
@@ -56,14 +55,14 @@ const PLANS = {
 };
 
 // Check if a feature is available for a given plan
-function hasFeature(plan, feature) {
+export function hasFeature(plan, feature) {
   const planConfig = PLANS[plan];
   if (!planConfig) return false;
   return planConfig.features.includes(feature);
 }
 
 // Setup billing for a new store
-async function setupBilling(session) {
+export async function setupBilling(session) {
   const shop = session.shop;
 
   // Check if store has settings already
@@ -86,7 +85,7 @@ async function setupBilling(session) {
 }
 
 // Create a billing subscription
-async function createSubscription(session, planKey) {
+export async function createSubscription(session, planKey) {
   const plan = PLANS[planKey];
   if (!plan) throw new Error(`Unknown plan: ${planKey}`);
 
@@ -115,7 +114,7 @@ async function createSubscription(session, planKey) {
 }
 
 // Cancel subscription
-async function cancelSubscription(session) {
+export async function cancelSubscription(session) {
   const shop = session.shop;
 
   await prisma.storeSettings.update({
@@ -127,7 +126,7 @@ async function cancelSubscription(session) {
 }
 
 // Upgrade/downgrade plan
-async function changePlan(session, newPlanKey) {
+export async function changePlan(session, newPlanKey) {
   const shop = session.shop;
 
   // Create new billing subscription
@@ -147,7 +146,7 @@ async function changePlan(session, newPlanKey) {
 }
 
 // Get current plan info
-async function getCurrentPlan(shop) {
+export async function getCurrentPlan(shop) {
   const settings = await prisma.storeSettings.findUnique({
     where: { shop },
   });
@@ -159,13 +158,3 @@ async function getCurrentPlan(shop) {
     features: PLANS[settings.plan]?.features || PLANS.basic.features,
   };
 }
-
-module.exports = {
-  PLANS,
-  hasFeature,
-  setupBilling,
-  createSubscription,
-  cancelSubscription,
-  changePlan,
-  getCurrentPlan,
-};
