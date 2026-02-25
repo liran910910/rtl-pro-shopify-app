@@ -2,8 +2,8 @@
 # Learn more: https://shopify.dev/docs/apps/tools/cli/configuration
 
 name = "RTL Pro"
-client_id = "YOUR_CLIENT_ID"
-application_url = "https://your-app-domain.com"
+client_id = "fc0e6c012338846ef1f2793ed7ad544f"
+application_url = "https://rtl-pro-shopify-app-production.up.railway.app"
 embedded = true
 
 [access_scopes]
@@ -11,20 +11,20 @@ scopes = "read_themes,write_themes,read_locales,write_locales,read_translations,
 
 [auth]
 redirect_urls = [
-  "https://your-app-domain.com/api/auth/callback",
-  "https://your-app-domain.com/auth/callback"
+  "https://rtl-pro-shopify-app-production.up.railway.app/api/auth/callback",
+  "https://rtl-pro-shopify-app-production.up.railway.app/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-10"
 
   [webhooks.privacy_compliance]
-  customer_data_request_url = "https://your-app-domain.com/api/webhooks/customers/data_request"
-  customer_deletion_url = "https://your-app-domain.com/api/webhooks/customers/redact"
-  shop_deletion_url = "https://your-app-domain.com/api/webhooks/shop/redact"
+  customer_data_request_url = "https://rtl-pro-shopify-app-production.up.railway.app/api/webhooks/customers/data_request"
+  customer_deletion_url = "https://rtl-pro-shopify-app-production.up.railway.app/api/webhooks/customers/redact"
+  shop_deletion_url = "https://rtl-pro-shopify-app-production.up.railway.app/api/webhooks/shop/redact"
 
 [app_proxy]
-url = "https://your-app-domain.com/api/proxy"
+url = "https://rtl-pro-shopify-app-production.up.railway.app/api/proxy"
 subpath = "rtl-pro"
 prefix = "apps"
 
@@ -33,4 +33,4 @@ embedded = false
 
 [build]
 automatically_update_urls_on_dev = true
-dev_store_url = "YOUR_DEV_STORE.myshopify.com"
+dev_store_url = "rtl-test-2022.myshopify.com"
